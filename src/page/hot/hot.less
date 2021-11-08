@@ -1,0 +1,36 @@
+.app {
+  box-sizing: border-box;
+  text-align: center;
+  display: flex;
+  height: 100vh;
+  max-width: 1440px;
+  flex-direction: column;
+  position: relative;
+  margin: 0 auto;
+
+
+  > :global(.ant-spin) {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 100;
+  }
+
+  .hot-title{
+    padding: 8;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+  .items-content {
+      flex: 1 0 0;
+      width: 100%;
+      overflow-y: scroll;
+      overflow-x: hidden;
+
+      :global(.ant-spin-container .ant-row) {
+          margin: 0 !important;
+      }
+  }
+}

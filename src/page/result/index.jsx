@@ -29,6 +29,13 @@ export default class BattleResult extends Component {
   componentDidMount() {
     this.setState({ loading: true });
     const [, urlParams] = parseUrl();
+    if (!urlParams) {
+      this.setState({ loading: false });
+      setTimeout(() => {
+        window.alert("参数异常!");
+      }, 16);
+      return;
+    }
     const plays = urlParams.filter((v) => v.name.indexOf("play") !== -1);
 
     if (plays.length !== 2) {

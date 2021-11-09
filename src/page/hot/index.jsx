@@ -175,7 +175,7 @@ export default class App extends React.Component {
                 type={target === index ? "link" : "text"}
                 onClick={this.handleButtonClick.bind(this, index)}
               >
-                {language}
+                {language}111
               </Button>
             );
           })}

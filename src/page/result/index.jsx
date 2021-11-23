@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Image, Row, Col, Button, Spin, message } from "antd";
 
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 import axios from "axios";
 
@@ -13,7 +13,7 @@ function getGithubData(user) {
   return axios.get(`https://api.github.com/users/${user}`);
 }
 
-export default class BattleResult extends Component {
+class BattleResult extends Component {
   constructor(props) {
     super(props);
 
@@ -32,7 +32,9 @@ export default class BattleResult extends Component {
     if (!urlParams) {
       this.setState({ loading: false });
       setTimeout(() => {
-        window.alert("参数异常!");
+        this.props.history.push("/battle");
+        // window.alert("参数异常!");
+        message.error("参数异常!", 2);
       }, 16);
       return;
     }
@@ -41,7 +43,8 @@ export default class BattleResult extends Component {
     if (plays.length !== 2) {
       this.setState({ loading: false });
       setTimeout(() => {
-        window.alert("参数异常!");
+        this.props.history.push("/battle");
+        message.error("参数异常!", 2);
       }, 16);
       return;
     }
@@ -67,8 +70,11 @@ export default class BattleResult extends Component {
         });
       })
       .catch((err) => {
-        // message.error(err.response ? err.response.data.message : err.message, 10)
-        window.alert(err.response ? err.response.data.message : err.message);
+        message.error(
+          err.response ? err.response.data.message : err.message,
+          10
+        );
+        // window.alert(err.response ? err.response.data.message : err.message);
         this.setState({ loading: false });
       });
   }
@@ -125,3 +131,4 @@ export default class BattleResult extends Component {
     );
   }
 }
+export default withRouter(BattleResult);

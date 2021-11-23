@@ -150,10 +150,13 @@ export default class App extends React.Component {
           this.source = null;
           return;
         }
-        // message.error(thrown.response ? thrown.response.data.message : thrown.message, 0)
-        window.alert(
-          thrown.response ? thrown.response.data.message : thrown.message
+        message.error(
+          thrown.response ? thrown.response.data.message : thrown.message,
+          0
         );
+        // window.alert(
+        //   thrown.response ? thrown.response.data.message : thrown.message
+        // );
         this.setState({ loading: false });
         this.source = null;
       });
